@@ -1,0 +1,17 @@
+{
+	"folders":
+	[
+		{
+			"follow_symlinks": true,
+			"path": "."
+		},
+		{
+			"follow_symlinks": true,
+			"path": "/Users/tilman/Projects/expenseShare/repo/application/static"
+		},
+		{
+			"follow_symlinks": true,
+			"path": "/Users/tilman/Uni/SAND/repo/SAND_Frontend"
+		}
+	]
+}

@@ -1,0 +1,111 @@
+<!doctype html>
+<html>
+<head>
+	<meta charset="utf8">
+	<title>Buelkbook</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0">
+	<link rel="stylesheet" href="/css/normalize.css">
+	<link rel="stylesheet" href="/css/style.css">
+</head>
+<body>
+
+<div class="app-view">
+
+</div>
+
+<script type="text/template" id="template-AppView">
+	<div class="app-view__main js--app-view__main"></div>
+	<div class="app-view__overlay js--app-view__overlay"></div>
+</script>
+	
+<script type="text/template" id="template-AttendeeCollectionView">
+	<header class="attendee-collection__header">
+		<h1>Buelkbook</h1>
+		<p>Willkommen auf der Seite vom Familientreffen in Buelkau 2014. Das Treffen findet vom 26. bis 28. September 2014 statt. Bitte tragt in der Tabelle ein, ob ihr kommt und wen und was ihr mitbringt.</p>
+		<p><a href="/attendee/new" class="button" tabindex="0">Neuen Teilnehmer anmelden</a></p>
+	</header>
+	<table class="attendees">
+		<thead>
+			<tr><th>Name</th><th>Zeug</th><th>Begleiter</th><th>Bearbeiten</th></tr>
+		</thead>
+		<tbody class="js--attendee-collection__table"></tbody>
+	</table>
+	<div class="js--attendee-collection__total"></div>
+</script>
+
+<script type="text/template" id="template-AttendeeTableRowView">
+	<td class="attendee-table-row__name"><%- name %></td>
+	<td class="attendee-table-row__stuff"><%= stuff %></td>
+	<td class="attendee-table-row__companions js--attendee-table-row__companions"></td>
+	<td class="attendee-table-row__controls js--attendee-table-row__controls"><%= controls %></td>
+</script>
+
+<script type="text/template" id="template-AttendeeTableRowView__controls--default">
+	<a href="/attendee/<%- id %>" class="button" tabindex="0">Bearbeiten</a> 
+	<button type="button" class="button button--negative js--attendee-table-row__delete-show">Löschen</button>
+</script>
+
+<script type="text/template" id="template-AttendeeTableRowView__controls--delete">
+	Wirklich löschen? 
+	<button type="button" class="button button--negative js--attendee-table-row__delete-confirm">Ja</button>
+	<button type="button" class="button button--positive js--attendee-table-row__delete-abort">Nein</button>
+</script>
+
+
+<script type="text/template" id="template-AttendeeEditView">
+	<% if (name) { %>
+		<h2>„<%- name %>“ bearbeiten</h2>
+	<% } else { %>
+		<h2>Neuen Teilnehmer anmelden</h2>
+	<% } %>
+ 	<label class="input-group js--attendee-edit__name">
+		<strong class="input-group__label">Name:</strong> 
+		<input class="input-group__input" type="text" value="<%- name %>">
+		<div class="input-group__message"></div>
+	</label>
+	<label class="input-group js--attendee-edit__stuff">
+		<strong class="input-group__label">Zeugs:</strong> 
+		<textarea class="input-group__input input-group__input--multiline"><%- stuff %></textarea>
+		<div class="input-group__message"></div>
+	</label>
+	<label class="input-group js--attendee-edit__companions">
+		<strong class="input-group__label">Begleiter:</strong> 
+		<textarea class="input-group__input input-group__input--multiline"><%- companions %></textarea>
+		<div class="input-group__info">Bitte für jeden Begleiter eine neue Zeile</div>
+		<div class="input-group__message"></div>
+	</label>
+	<button type="submit" class="button button--positive js--attendee-edit__save">Speichern</button>
+	<button type="button" class="button button--negative js--attendee-edit__cancel">Abbrechen</button> 
+</script>
+
+<script src="/js/libs/promise.js"></script>
+<script src="/js/libs/lodash.underscore.js"></script>
+<script src="/js/libs/jquery.js"></script>
+<script src="/js/libs/backbone.js"></script>
+<script src="/js/libs/backbone-super.js"></script>
+<script src="/js/libs/backbone-relational.js"></script>
+
+<script src="/js/routers/Router.js"></script>
+<script src="/js/models/Attendee.js"></script>
+<script src="/js/models/Companion.js"></script>
+<script src="/js/collections/AttendeeCollection.js"></script>
+
+<script src="/js/views/ACollectionView.js"></script>
+<script src="/js/views/AppView.js"></script>
+<script src="/js/views/AttendeeCollectionView.js"></script>
+<script src="/js/views/AttendeeCollectionTotalView.js"></script>
+<script src="/js/views/AttendeeTableRowView.js"></script>
+<script src="/js/views/AttendeeEditView.js"></script>
+<script src="/js/views/CompanionCollectionView.js"></script>
+<script src="/js/views/CompanionView.js"></script>
+
+<script>
+var av = new bb.AppView({el: '.app-view'});
+av.render();
+var router = new bb.Router(av);
+Backbone.history.start({pushState: true});
+</script>
+
+
+</body>
+</html>

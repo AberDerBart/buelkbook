@@ -1,0 +1,9 @@
+Options FollowSymLinks
+RewriteEngine On
+RewriteBase /api/
+
+
+# forward requests to api
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^(.*)$ index.php?q=$1 [QSA,L]

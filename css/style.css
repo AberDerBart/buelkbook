@@ -1,0 +1,172 @@
+* {
+	box-sizing: border-box;
+}
+
+body {
+	font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+}
+
+/*table, thead, tbody, tr, td {
+	display: block;
+}*/
+
+html, body {
+	height: 100%;
+}
+
+body {
+	background: white;
+}
+
+.app-view {
+	height: 100%;
+	overflow-y: scroll;
+}
+.app-view--overlay-visible {
+	overflow: hidden;
+}
+.app-view__overlay {
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 0;
+	bottom: 0;
+	right: 0;
+	background: white;
+	overflow-y: scroll;
+}
+.app-view--overlay-visible .app-view__overlay {
+	display: block;
+}
+
+.attendee-collection__header {
+	padding: .5em 0;
+}
+
+.attendees {
+	table-layout: fixed;
+	width: 100%;
+}
+
+tbody tr:nth-child(2n+1) {
+	background: hsl(0, 0%, 98%);
+}
+th {
+	padding: .3rem;
+	background: hsl(0, 0%, 95%);
+	text-align: left;	
+}
+td {
+	padding: .3rem;
+	vertical-align: baseline;
+}
+
+.button {
+	display: inline-block;
+	background: hsl(0, 0%, 90%);
+	border: 0;
+	padding: .4rem;
+
+	color: black;
+	text-decoration: none;
+}
+.button:hover {
+	background: hsl(0, 0%, 85%);
+}
+.button:focus {
+	outline: .15rem dashed hsl(0, 0%, 40%);
+}
+.button:active {
+	-ms-transform: translateY(1px);
+	-moz-transform: translateY(1px);
+	-webkit-transform: translateY(1px);
+	transform: translateY(1px);
+	outline: 0;
+}
+
+.button--negative {
+	background: hsl(2, 98%, 61%);
+	color: white;
+}
+.button--negative:hover {
+	background: hsl(2, 98%, 56%);
+}
+
+.button--positive {
+	background: hsl(130, 73%, 40%);
+	color: white;
+}
+.button--positive:hover {
+	background: hsl(130, 73%, 35%);
+}
+
+
+.input-group {
+	display:block;
+	margin: .5rem 0;
+}
+.input-group__label {
+	display: block;
+	margin: .3rem 0;
+}
+.input-group__input {
+	display: block;
+	width: 100%;
+	border: .1rem solid hsl(0, 0%, 85%);
+	padding: .3rem;
+}
+.input-group__input--multiline {
+	height: 6rem;
+}
+.input-group__message {
+	margin: .3rem 0;
+}
+.input-group__info {
+	margin: .3rem 0;
+	color: hsl(0, 0%, 40%);
+}
+
+.input-group--error {
+	color: hsl(2, 98%, 56%);
+}
+.input-group--error .input-group__input {
+	border-color: hsl(2, 98%, 56%);
+}
+
+@media screen and (min-width: 40rem) {
+	body {
+		background: hsl(0, 0%, 40%);
+	}
+	.app-view__main {
+		min-height: 100%;
+		background: white;
+		padding: 0 2em;
+		margin: 0 auto;
+		max-width: 70rem;
+	}
+	.app-view--overlay-visible .app-view__main {
+		-webkit-filter: blur(1px);
+	}
+	.app-view__overlay {
+		background: hsla(0, 0%, 0%, .5);
+	}
+	
+	.attendee-collection__header {
+		padding: .5em 0;
+	}
+
+	.attendee-edit {
+		background: white;
+		padding: 2rem;
+		max-width: 50rem;
+		margin: 0 auto;
+	}
+
+	.input-group__label {
+		float: left;
+		width: 20%;
+	}
+	.input-group__input {
+		width: 80%;
+	}
+}
