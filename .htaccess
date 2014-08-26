@@ -1,0 +1,8 @@
+RewriteEngine On
+RewriteBase /
+
+# forward paths to index html
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+RewriteRule ^attendee/new$ index.html [QSA,L]
+RewriteRule ^attendee/[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$ index.html [QSA,L]
