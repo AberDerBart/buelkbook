@@ -69,18 +69,22 @@ h1:first-child, h2:first-child {
 }
 
 
+.companion-collection {
+	margin: 0;
+}
+
 
 tbody tr:nth-child(2n+1) {
 	background: hsl(0, 0%, 98%);
 }
 th {
-	padding: .3rem;
+	padding: .5rem;
 	background: hsl(0, 0%, 95%);
 	text-align: left;	
 }
 td {
-	padding: .3rem;
-	vertical-align: baseline;
+	padding: .5rem;
+	vertical-align: top;
 }
 
 
@@ -125,6 +129,11 @@ td {
 	background: hsl(130, 73%, 35%);
 }
 
+.button--float {
+	display: block;
+	float: left;
+	margin-right: .5em;
+}
 
 
 

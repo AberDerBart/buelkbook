@@ -5,6 +5,7 @@ var bb = bb || {};
 
 	bb.CompanionCollectionView = bb.ACollectionView.extend({
 		tagName: 'ul',
+		className: 'companion-collection',
 		
 		createView: function (model) {
 			return new bb.CompanionView({model: model});
