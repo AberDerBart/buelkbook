@@ -85,6 +85,8 @@ th {
 td {
 	padding: .5rem;
 	vertical-align: top;
+	overflow: hidden;
+	text-overflow: hidden;
 }
 
 
