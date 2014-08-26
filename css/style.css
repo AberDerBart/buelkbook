@@ -2,8 +2,9 @@
 	box-sizing: border-box;
 }
 
-body {
+html {
 	font-family: "Helvetica Neue", "Helvetica", "Arial", sans-serif;
+	font-size: 16px;
 }
 
 /*table, thead, tbody, tr, td {
@@ -28,11 +29,11 @@ h1:first-child, h2:first-child {
 }
 .app-view__main {
 	min-height: 100%;
-	padding: .5em .5em 2.5em;
+	padding: .5rem .5rem 2.5rem;
 }
 .app-view__footer {
-	margin-top: -1.5em;
-	padding: 0 .5em;
+	margin-top: -1.5rem;
+	padding: 0 .5rem;
 	color: hsl(0, 0%, 40%);
 }
 
@@ -47,7 +48,7 @@ h1:first-child, h2:first-child {
 	overflow-y: scroll;
 }
 .app-view__overlay__window {
-	padding: .5em 1em;
+	padding: .5rem 1rem;
 }
 
 .app-view--overlay-visible {
@@ -59,7 +60,7 @@ h1:first-child, h2:first-child {
 
 
 .attendee-collection__header {
-	padding: .5em 0;
+	padding: .5rem 0;
 }
 
 .attendees {
@@ -167,14 +168,14 @@ td {
 	}
 	.app-view__main {
 		background: white;
-		padding: 2em 2em 4em;
+		padding: 2rem 2rem 4rem;
 		margin: 0 auto;
 		max-width: 70rem;
 	}
 	.app-view__footer {
-		margin: -2em auto 0;
+		margin: -2rem auto 0;
 		max-width: 70rem;
-		padding: 0 2em;
+		padding: 0 2rem;
 	}
 	.app-view--overlay-visible .app-view__main {
 		-webkit-filter: blur(1px);
@@ -190,7 +191,7 @@ td {
 	}
 
 	.attendee-collection__header {
-		padding: .5em 0;
+		padding: .5rem 0;
 	}
 
 	.input-group__label {
