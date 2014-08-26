@@ -5,7 +5,7 @@ var bb = bb || {};
 
 	bb.AttendeeCollectionTotalView = Backbone.View.extend({
 		tagName: 'div',
-		template: _.template('<div>Insgesamt <%- total %> Teilnehmer</div>'),
+		template: _.template('<div>Bis jetzt haben sich <%- total %> Teilnehmer angemeldet!</div>'),
 
 		initialize: function () {
 			this.listenTo(this.collection, 'change add remove', this.render);
