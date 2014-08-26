@@ -13,9 +13,11 @@ class KeyValueStore {
 			$this->report_error($this->mysqli);
 		}
 
-		$all = array_map(function ($row) {
-			return JSON_decode($row["data"], true);
-		}, $result->fetch_all(MYSQLI_ASSOC));
+		$all = array();
+		
+		while ($row = $result->fetch_array(MYSQLI_ASSOC)) {
+			array_push($all, JSON_decode($row["data"], true));
+		};
 
 		return $all;
 	}
