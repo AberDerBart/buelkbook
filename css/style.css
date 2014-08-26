@@ -7,10 +7,6 @@ html {
 	font-size: 16px;
 }
 
-/*table, thead, tbody, tr, td {
-	display: block;
-}*/
-
 html, body {
 	height: 100%;
 }
@@ -74,9 +70,7 @@ h1:first-child, h2:first-child {
 }
 
 
-tbody tr:nth-child(2n+1) {
-	background: hsl(0, 0%, 98%);
-}
+
 th {
 	padding: .5rem;
 	background: hsl(0, 0%, 95%);
@@ -89,6 +83,61 @@ td {
 	text-overflow: hidden;
 }
 
+tbody tr:nth-child(2n+1) {
+	background: hsl(0, 0%, 98%);
+}
+
+
+
+@media screen and (max-width: 40rem) {
+	table, thead, tbody, tr, td {
+		display: block;
+	}
+
+	thead tr { 
+		position: absolute;
+		top: -9999px;
+		left: -9999px;
+	}
+
+	tbody tr {
+		border-top: .1rem solid hsl(0, 0%, 40%);
+	}
+	tbody tr:first-child {
+		border-top: 0;
+	}
+
+	td {
+		padding-left: 6.5rem;
+		min-height: 2rem;
+		position: relative;
+	}
+	td::before {
+		content: "abc";
+		display: block;
+		position: absolute;
+		top: 0;
+		left: 0;
+		width: 6.5rem;
+		padding: .5rem;
+		font-weight: bold;
+	}
+	.attendee-table-row__name::before {
+		content: "Name:";
+	}
+	.attendee-table-row__stuff::before {
+		content: "Zeugs:";
+	}
+	.attendee-table-row__companions::before {
+		content: "Begleiter:";
+	}
+	.attendee-table-row__controls {
+		padding-left: .5rem;
+	}
+	.attendee-table-row__controls::before {
+		content: none;
+	}
+}
 
 
 
