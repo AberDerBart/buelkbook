@@ -18,12 +18,16 @@ body {
 	background: white;
 }
 
+h1:first-child, h2:first-child {
+	margin-top: 0;
+}
+
 .app-view {
 	height: 100%;
 	overflow-y: scroll;
 }
-.app-view--overlay-visible {
-	overflow: hidden;
+.app-view__main {
+	padding: .5em;
 }
 .app-view__overlay {
 	display: none;
@@ -35,9 +39,17 @@ body {
 	background: white;
 	overflow-y: scroll;
 }
+.app-view__overlay__window {
+	padding: .5em 1em;
+}
+
+.app-view--overlay-visible {
+	overflow: hidden;
+}
 .app-view--overlay-visible .app-view__overlay {
 	display: block;
 }
+
 
 .attendee-collection__header {
 	padding: .5em 0;
@@ -47,6 +59,8 @@ body {
 	table-layout: fixed;
 	width: 100%;
 }
+
+
 
 tbody tr:nth-child(2n+1) {
 	background: hsl(0, 0%, 98%);
@@ -60,6 +74,9 @@ td {
 	padding: .3rem;
 	vertical-align: baseline;
 }
+
+
+
 
 .button {
 	display: inline-block;
@@ -101,6 +118,8 @@ td {
 }
 
 
+
+
 .input-group {
 	display:block;
 	margin: .5rem 0;
@@ -133,6 +152,8 @@ td {
 	border-color: hsl(2, 98%, 56%);
 }
 
+
+
 @media screen and (min-width: 40rem) {
 	body {
 		background: hsl(0, 0%, 40%);
@@ -150,16 +171,15 @@ td {
 	.app-view__overlay {
 		background: hsla(0, 0%, 0%, .5);
 	}
-	
-	.attendee-collection__header {
-		padding: .5em 0;
-	}
-
-	.attendee-edit {
+	.app-view__overlay__window {
 		background: white;
 		padding: 2rem;
 		max-width: 50rem;
 		margin: 0 auto;
+	}
+
+	.attendee-collection__header {
+		padding: .5em 0;
 	}
 
 	.input-group__label {
