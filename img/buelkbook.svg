@@ -1,0 +1,128 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:osb="http://www.openswatchbook.org/uri/2009/osb"
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:xlink="http://www.w3.org/1999/xlink"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="744.09448819"
+   height="1052.3622047"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.48.3.1 r9886"
+   sodipodi:docname="buelkbook.svg">
+  <defs
+     id="defs4">
+    <linearGradient
+       id="linearGradient4039"
+       osb:paint="solid">
+      <stop
+         style="stop-color:#ffffff;stop-opacity:1;"
+         offset="0"
+         id="stop4041" />
+    </linearGradient>
+    <clipPath
+       id="clipPath3910"
+       clipPathUnits="userSpaceOnUse">
+      <path
+         id="path3912"
+         d="M 0,500 510,500 510,0 0,0 0,500 z" />
+    </clipPath>
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4039"
+       id="linearGradient4043"
+       x1="-14.483"
+       y1="-2.8895"
+       x2="16.046"
+       y2="-2.8895"
+       gradientUnits="userSpaceOnUse" />
+    <linearGradient
+       inkscape:collect="always"
+       xlink:href="#linearGradient4039"
+       id="linearGradient4045"
+       gradientUnits="userSpaceOnUse"
+       x1="-14.483"
+       y1="-2.8895"
+       x2="16.046"
+       y2="-2.8895" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.67847594"
+     inkscape:cx="132.92435"
+     inkscape:cy="391.55341"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     inkscape:window-width="1600"
+     inkscape:window-height="900"
+     inkscape:window-x="0"
+     inkscape:window-y="0"
+     inkscape:window-maximized="1" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1">
+    <path
+       style="fill:#008080;fill-opacity:1;stroke:none"
+       d="m 525,452.36218 c -13.80712,0 -25,11.19288 -25,25 l 0,12.5 0,12.5 0,12.5 0,12.5 c 0,13.80712 11.19288,25 25,25 l 10.4375,0 0,-75.375 13.4375,-1.8125 0,30.40625 c 3.53108,-3.4155 8.30877,-6.71875 14.6875,-6.71875 13.89316,0 23,11.26455 23,27.4375 0,12.33738 -6.30386,21.88857 -15.59375,26.0625 l 4.03125,0 c 13.80712,0 25,-11.19288 25,-25 l 0,-12.5 0,-12.5 0,-12.5 0,-12.5 c 0,-13.80712 -11.19288,-25 -25,-25 l -12.5,0 -12.5,0 -12.5,0 -12.5,0 z m 34.6875,57.75 c -4.44233,0 -7.85095,1.72559 -10.8125,4.34375 l 0,26.53125 c 2.50593,1.93472 5.92122,2.96875 9.90625,2.96875 8.99856,0 14.125,-7.29785 14.125,-17.09375 0,-10.24985 -4.9053,-16.75 -13.21875,-16.75 z"
+       id="path2989"
+       inkscape:connector-curvature="0"
+       inkscape:export-xdpi="468"
+       inkscape:export-ydpi="468" />
+    <g
+       transform="matrix(1.25,0,0,-1.25,-79.091308,837.81509)"
+       inkscape:label="FB-FindUsOnFacebook-online-broadcast"
+       id="g3884">
+      <g
+         id="g3906"
+         transform="translate(-42.022344,163.24065)">
+        <g
+           clip-path="url(#clipPath3910)"
+           id="g3908">
+          <g
+             transform="translate(185.0835,248.106)"
+             id="g3942" />
+          <g
+             transform="matrix(1.3400686,0,0,1.3400686,229.62052,115.04903)"
+             id="g3958"
+             style="fill:url(#linearGradient4043);fill-opacity:1" />
+        </g>
+      </g>
+    </g>
+    <flowRoot
+       xml:space="preserve"
+       id="flowRoot4031"
+       style="fill:black;stroke:none;stroke-opacity:1;stroke-width:1px;stroke-linejoin:miter;stroke-linecap:butt;fill-opacity:1;font-family:Sans;font-style:normal;font-weight:normal;font-size:40px;line-height:125%;letter-spacing:0px;word-spacing:0px"><flowRegion
+         id="flowRegion4033"><rect
+           id="rect4035"
+           width="196.97975"
+           height="138.3909"
+           x="118.18785"
+           y="411.92548" /></flowRegion><flowPara
+         id="flowPara4037"></flowPara></flowRoot>  </g>
+</svg>
