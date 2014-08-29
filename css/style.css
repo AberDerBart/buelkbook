@@ -22,6 +22,7 @@ h1:first-child, h2:first-child {
 .app-view {
 	height: 100%;
 	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
 }
 .app-view__main {
 	min-height: 100%;
@@ -42,6 +43,7 @@ h1:first-child, h2:first-child {
 	right: 0;
 	background: white;
 	overflow-y: scroll;
+	-webkit-overflow-scrolling: touch;
 }
 .app-view__overlay__window {
 	padding: .5rem 1rem;
