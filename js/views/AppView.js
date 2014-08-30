@@ -59,9 +59,9 @@ var app = app || {};
 		fetchAttendeesIfNeeded: function () {
 			if (!this.attendeesFetched) {
 				return Promise.resolve(this.attendees.fetch())
-					.then(function () {
+					.then(_.bind(function () {
 						this.attendeesFetched = true;
-					}.bind(this))
+					}, this))
 				;
 			} else {
 				return Promise.resolve(true);
@@ -70,7 +70,7 @@ var app = app || {};
 
 		showAttendeeCreate: function () {
 			this.fetchAttendeesIfNeeded()
-				.then(function () {
+				.then(_.bind(function () {
 
 					var attendee = new bb.Attendee();
 					this.attendees.add(attendee);
@@ -80,14 +80,14 @@ var app = app || {};
 					}));
 
 					this.setOverlayShown(true);
-				}.bind(this), function () {
+				}, this), function () {
 					console.log(arguments);
 				})
 			;
 		},
 		showAttendeeEdit: function (id) {
 			this.fetchAttendeesIfNeeded()
-				.then(function () {
+				.then(_.bind(function () {
 					var attendee = this.attendees.add({id: id});
 
 					this.setView('overlay', new bb.AttendeeEditView({
@@ -95,7 +95,7 @@ var app = app || {};
 					}));
 
 					this.setOverlayShown(true);
-				}.bind(this))
+				}, this))
 			;
 		},
 		showHome: function () {
@@ -135,9 +135,9 @@ var app = app || {};
 			}
 		},
 		removeAllViews: function () {
-			Object.keys(this._viewEls).forEach(function (name) {
+			_(this._viewEls).keys().forEach(_.bind(function (name) {
 				this.removeView(name);
-			}.bind(this));
+			}, this));
 		},
 	});
 }(bb));

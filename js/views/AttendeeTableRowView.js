@@ -45,9 +45,9 @@ var bb = bb || {};
 
 		doDelete: function () {
 			return Promise.resolve(this.model.destroy())
-				.then(function () {
+				.then(_.bind(function () {
 					Backbone.history.navigate('/', true);
-				}.bind(this), function (error) {
+				}, this), function (error) {
 					// TODO error indicator
 					console.error(error);
 					alert("fail");
