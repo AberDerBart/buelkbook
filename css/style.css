@@ -60,6 +60,11 @@ h1:first-child, h2:first-child {
 .attendee-collection__header {
 	padding: .5rem 0;
 }
+.attendee-collection__header__headline {
+	background: url(http://localhost/img/buelkbook.svg) 0 .15em no-repeat;
+	padding-left: 1em;
+	background-size: .9em;
+}
 
 .attendees {
 	table-layout: fixed;
