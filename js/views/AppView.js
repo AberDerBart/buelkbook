@@ -32,11 +32,15 @@ var app = app || {};
 			this._viewEls.main = this.$('.js--app-view__main');
 			this._viewEls.overlay = this.$('.js--app-view__overlay');
 
-			Object.keys(this._viewEls).forEach(function (viewName) {
-				if (this._views[viewName]) {
-					this._viewEls[viewName].html(this._views[viewName].render().el);
-				}
-			}.bind(this));
+			_(this._viewEls)
+			.keys()
+			.forEach(
+				_.bind(function (viewName) {
+					if (this._views[viewName]) {
+						this._viewEls[viewName].html(this._views[viewName].render().el);
+					}
+				}, this)
+			);
 
 			return this;
 		},

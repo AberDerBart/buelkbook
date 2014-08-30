@@ -11,7 +11,7 @@ var bb = bb || {};
 
 		events: {
 			'click .js--attendee-table-row__delete-show': 'showDelete',
-			'click .js--attendee-table-row__delete-confirm': 'delete',
+			'click .js--attendee-table-row__delete-confirm': 'doDelete',
 			'click .js--attendee-table-row__delete-abort': 'abortDelete',
 		},
 
@@ -43,7 +43,7 @@ var bb = bb || {};
 			return this._super.apply(this, arguments);
 		},
 
-		delete: function () {
+		doDelete: function () {
 			return Promise.resolve(this.model.destroy())
 				.then(function () {
 					Backbone.history.navigate('/', true);
