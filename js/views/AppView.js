@@ -14,6 +14,13 @@ var app = app || {};
 			this.attendees = new bb.AttendeeCollection();
 			this.attendeesFetched = false;
 
+			this.options = new bb.OptionCollection();
+			this.options.add([{
+				id: 'Käse'
+			}, {
+				id: 'Wurst'
+			}])
+
 			this._views = {};
 
 			this._viewEls = {
@@ -73,10 +80,12 @@ var app = app || {};
 				.then(_.bind(function () {
 
 					var attendee = new bb.Attendee();
+					attendee.set('option', this.options.at(0));
 					this.attendees.add(attendee);
 
 					this.setView('overlay', new bb.AttendeeEditView({
 						model: attendee,
+						options: this.options,
 					}));
 
 					this.setOverlayShown(true);
@@ -92,6 +101,7 @@ var app = app || {};
 
 					this.setView('overlay', new bb.AttendeeEditView({
 						model: attendee,
+						options: this.options,
 					}));
 
 					this.setOverlayShown(true);
