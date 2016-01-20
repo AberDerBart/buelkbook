@@ -3,11 +3,15 @@ include('Router.php');
 include('KeyValueStore.php');
 
 function validate_attendee($attendee) {
+	$optionIds = array_map(function ($opt) {
+		return $opt["id"];
+	}, JSON_decode(file_get_contents("../data/options.json"), true));
+
 	if (!is_array($attendee)) {
 		return false;
 	}
 
-	if (count($attendee) != 4) {
+	if (count($attendee) != 5) {
 		return false;
 	}
 
@@ -24,6 +28,10 @@ function validate_attendee($attendee) {
 	}
 
 	if (!is_array($attendee["companions"])) {
+		return false;
+	}
+
+	if (!is_string($attendee["option"]) || !in_array($attendee["option"], $optionIds)) {
 		return false;
 	}
 
@@ -104,6 +112,10 @@ $router->delete("attendee/:id", function ($req) use ($kvs) {
 	$data = $kvs->delete($req["params"]["id"]);
 
 	return array(204, null);
+});
+
+$router->get("option", function ($req) {
+	return array(200, JSON_decode(file_get_contents("../data/options.json"), true));
 });
 
 $router->respond();
