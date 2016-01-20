@@ -15,6 +15,11 @@ var bb = bb || {};
 			key: 'companions',
 			relatedModel: 'bb.Companion',
 			collectionType: 'Backbone.Collection',
+		}, {
+			type: Backbone.HasOne,
+			key: 'option',
+			relatedModel: 'bb.Option',
+			includeInJSON: Backbone.Model.prototype.idAttribute,
 		}],
 
 		urlRoot: '/api/attendee',
