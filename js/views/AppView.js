@@ -12,14 +12,8 @@ var app = app || {};
 
 		initialize: function () {
 			this.attendees = new bb.AttendeeCollection();
-			this.attendeesFetched = false;
-
 			this.options = new bb.OptionCollection();
-			this.options.add([{
-				id: 'Käse'
-			}, {
-				id: 'Wurst'
-			}])
+			this.attendeesFetched = false;
 
 			this._views = {};
 
@@ -65,7 +59,7 @@ var app = app || {};
 
 		fetchAttendeesIfNeeded: function () {
 			if (!this.attendeesFetched) {
-				return Promise.resolve(this.attendees.fetch())
+				return Promise.all([this.attendees.fetch(), this.options.fetch()])
 					.then(_.bind(function () {
 						this.attendeesFetched = true;
 					}, this))
