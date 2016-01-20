@@ -48,7 +48,7 @@ var bb = bb || {};
 		},
 		removeAllViews: function () {
 			_(this._viewPointers).keys().forEach(_.bind(function (cid) {
-				this.removeView(this._viewPointers[cid]);
+				this.removeView(this._viewPointers[cid].model);
 			}, this));
 		},
 
