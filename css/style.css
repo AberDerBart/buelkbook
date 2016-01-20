@@ -61,7 +61,7 @@ h1:first-child, h2:first-child {
 	padding: .5rem 0;
 }
 .attendee-collection__header__headline {
-	background: url(http://localhost/img/buelkbook.svg) 0 .15em no-repeat;
+	background: url(/img/buelkbook.svg) 0 .15em no-repeat;
 	padding-left: 1em;
 	background-size: .9em;
 }
