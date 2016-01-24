@@ -66,6 +66,11 @@ h1:first-child, h2:first-child {
 	background-size: .9em;
 }
 
+
+.attendee-collection-total__votes th, .attendee-collection-total__votes td {
+	padding: .5rem 2rem;
+}
+
 .attendees {
 	table-layout: fixed;
 	width: 100%;
@@ -115,7 +120,7 @@ tbody tr:nth-child(2n+1) {
 	}
 
 	td {
-		padding-left: 6.5rem;
+		padding-left: 7rem;
 		min-height: 2rem;
 		position: relative;
 	}
@@ -125,7 +130,7 @@ tbody tr:nth-child(2n+1) {
 		position: absolute;
 		top: 0;
 		left: 0;
-		width: 6.5rem;
+		width: 7rem;
 		padding: .5rem;
 		font-weight: bold;
 	}
@@ -138,11 +143,20 @@ tbody tr:nth-child(2n+1) {
 	.attendee-table-row__companions::before {
 		content: "Begleiter:";
 	}
+	.attendee-table-row__option::before {
+		content: "Abstimmung:";
+	}
 	.attendee-table-row__controls {
 		padding-left: .5rem;
 	}
 	.attendee-table-row__controls::before {
 		content: none;
+	}
+	.attendee-collection-total__vote-row__option::before {
+		content: "Option:";
+	}
+	.attendee-collection-total__vote-row__votes::before {
+		content: "Stimmen:";
 	}
 }
 

@@ -14,14 +14,25 @@ var bb = bb || {};
 			'keyup .js--attendee-edit__name input': 'validateName',
 		},
 		
-		initialize: function () {
+		initialize: function (options) {
+			this.options = options.options;
+			
 			this.listenTo(this.model, 'change', this.render);
+
+			this.optionCollectionView = new bb.OptionCollectionView({
+				collection: this.options
+			});
 		},
 
 		render: function () {
 			var json = this.model.toJSON();
 			json.companions = this.collectionToText(this.model.get('companions'));
 			this.$el.html(this.template(json));
+
+			this.optionCollectionView.setElement(this.$('.js--attendee-edit__option__select'));
+			this.optionCollectionView.render();
+			this.optionCollectionView.setSelected(this.model.get('option'));
+
 			return this;
 		},
 
@@ -38,6 +49,7 @@ var bb = bb || {};
 				this.model.set({
 					name: this.$('.js--attendee-edit__name input').val(),
 					stuff: this.$('.js--attendee-edit__stuff textarea').val(),
+					option: this.optionCollectionView.getSelected(),
 				});
 
 				// TODO wait indicator

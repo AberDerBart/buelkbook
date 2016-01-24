@@ -12,6 +12,7 @@ var app = app || {};
 
 		initialize: function () {
 			this.attendees = new bb.AttendeeCollection();
+			this.options = new bb.OptionCollection();
 			this.attendeesFetched = false;
 
 			this._views = {};
@@ -58,7 +59,8 @@ var app = app || {};
 
 		fetchAttendeesIfNeeded: function () {
 			if (!this.attendeesFetched) {
-				return Promise.resolve(this.attendees.fetch())
+				return Promise.resolve(this.options.fetch())
+					.then(_.bind(this.attendees.fetch, this.attendees))
 					.then(_.bind(function () {
 						this.attendeesFetched = true;
 					}, this))
@@ -73,10 +75,12 @@ var app = app || {};
 				.then(_.bind(function () {
 
 					var attendee = new bb.Attendee();
+					attendee.set('option', this.options.at(0));
 					this.attendees.add(attendee);
 
 					this.setView('overlay', new bb.AttendeeEditView({
 						model: attendee,
+						options: this.options,
 					}));
 
 					this.setOverlayShown(true);
@@ -92,6 +96,7 @@ var app = app || {};
 
 					this.setView('overlay', new bb.AttendeeEditView({
 						model: attendee,
+						options: this.options,
 					}));
 
 					this.setOverlayShown(true);

@@ -48,14 +48,36 @@
 		<h1 class="attendee-collection__header__headline">Bülkbook</h1>
 		<p>Willkommen auf der Seite vom Familientreffen in Bülkau 2014. Das Treffen findet vom 26. bis 28. September 2014 statt. Bitte tragt in der Tabelle ein, ob ihr kommt und wen und was ihr mitbringt.</p>
 		<p>Fragen, Kommentare und Anmerkungen könnt ihr an <a href="mailto:j.grosse-holz@gmx.de">j.grosse-holz@gmx.de</a> schicken.</p>
-		<p class="js--attendee-collection__total"></p>
+		<div class="js--attendee-collection__total"></div>
 		<p><a href="/attendee/new" class="button" tabindex="0">Neuen Teilnehmer anmelden</a></p>
 	</header>
 	<table class="attendees">
 		<thead>
-			<tr><th>Name</th><th>Zeug</th><th>Begleiter</th><th>Bearbeiten</th></tr>
+			<tr><th>Name</th><th>Zeug</th><th>Begleiter</th><th>Abstimmung</th><th>Bearbeiten</th></tr>
 		</thead>
 		<tbody class="js--attendee-collection__table"></tbody>
+	</table>
+</script>
+
+<script type="text/template" id="template-AttendeeCollectionTotalView">
+	<p>Bis jetzt <%= total !== 1 ? "sind" : "ist" %>  <%- total %> Person<%= total !== 1 ? "en" : "" %> angemeldet!</p>
+	<p>Abstimmungsergebnisse:</p>
+	<table class="attendee-collection-total__votes">
+		<thead>
+		<tr>
+			<th>Option</th>
+			<th>Stimmen</th>
+		</tt>
+		</thead>
+		<tbody>
+			<% for (var i = 0; i < votes.length; i++) { %>
+				<% var vote = votes[i] %>
+				<tr>
+					<td class="attendee-collection-total__vote-row__option"><%- vote.optionId %></td>
+					<td class="attendee-collection-total__vote-row__votes"><%- vote.votes %></td>
+				</tr>
+			<% } %>
+		</tbody>
 	</table>
 </script>
 
@@ -63,6 +85,7 @@
 	<td class="attendee-table-row__name"><%- name %></td>
 	<td class="attendee-table-row__stuff"><%= stuff %></td>
 	<td class="attendee-table-row__companions js--attendee-table-row__companions"></td>
+	<td class="attendee-table-row__option"><%- option %></td>
 	<td class="attendee-table-row__controls js--attendee-table-row__controls"><%= controls %></td>
 </script>
 
@@ -100,6 +123,11 @@
 		<div class="input-group__info">Bitte für jeden Begleiter eine neue Zeile</div>
 		<div class="input-group__message"></div>
 	</label>
+	<label class="input-group js--attendee-edit__option">
+		<strong class="input-group__label">Abstimmung:</strong> 
+		<select class="input-group__input js--attendee-edit__option__select"></select>
+		<div class="input-group__message"></div>
+	</label>
 	<button type="submit" class="button button--positive js--attendee-edit__save">Speichern</button>
 	<button type="button" class="button button--negative js--attendee-edit__cancel">Abbrechen</button> 
 </script>
@@ -114,7 +142,10 @@
 <script src="/js/routers/Router.js"></script>
 <script src="/js/models/Attendee.js"></script>
 <script src="/js/models/Companion.js"></script>
+<script src="/js/models/Option.js"></script>
+
 <script src="/js/collections/AttendeeCollection.js"></script>
+<script src="/js/collections/OptionCollection.js"></script>
 
 <script src="/js/views/ACollectionView.js"></script>
 <script src="/js/views/AppView.js"></script>
@@ -124,6 +155,8 @@
 <script src="/js/views/AttendeeEditView.js"></script>
 <script src="/js/views/CompanionCollectionView.js"></script>
 <script src="/js/views/CompanionView.js"></script>
+<script src="/js/views/OptionCollectionView.js"></script>
+<script src="/js/views/OptionView.js"></script>
 
 <script>
 var av = new bb.AppView({el: '.app-view'});
