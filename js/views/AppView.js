@@ -59,7 +59,8 @@ var app = app || {};
 
 		fetchAttendeesIfNeeded: function () {
 			if (!this.attendeesFetched) {
-				return Promise.all([this.attendees.fetch(), this.options.fetch()])
+				return Promise.resolve(this.options.fetch())
+					.then(_.bind(this.attendees.fetch, this.attendees))
 					.then(_.bind(function () {
 						this.attendeesFetched = true;
 					}, this))
