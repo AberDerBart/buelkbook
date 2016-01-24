@@ -66,6 +66,11 @@ h1:first-child, h2:first-child {
 	background-size: .9em;
 }
 
+
+.attendee-collection-total__votes th, .attendee-collection-total__votes td {
+	padding: .5rem 2rem;
+}
+
 .attendees {
 	table-layout: fixed;
 	width: 100%;
@@ -146,6 +151,12 @@ tbody tr:nth-child(2n+1) {
 	}
 	.attendee-table-row__controls::before {
 		content: none;
+	}
+	.attendee-collection-total__vote-row__option::before {
+		content: "Option:";
+	}
+	.attendee-collection-total__vote-row__votes::before {
+		content: "Stimmen:";
 	}
 }
 
