@@ -152,6 +152,10 @@ tbody tr:nth-child(2n+1) {
 	.attendee-table-row__controls::before {
 		content: none;
 	}
+	.attendee-collection-total__votes th, .attendee-collection-total__votes td {
+		padding: .5rem;
+		padding-left: 7rem;
+	}
 	.attendee-collection-total__vote-row__option::before {
 		content: "Option:";
 	}
