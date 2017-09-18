@@ -79,6 +79,7 @@ h1:first-child, h2:first-child {
 
 .companion-collection {
 	margin: 0;
+	padding-left: 1.5em;
 }
 
 
@@ -134,14 +135,14 @@ tbody tr:nth-child(2n+1) {
 		padding: .5rem;
 		font-weight: bold;
 	}
-	.attendee-table-row__name::before {
-		content: "Name:";
+	.attendee-table-row__guys::before {
+		content: "Leute:";
 	}
 	.attendee-table-row__stuff::before {
 		content: "Zeugs:";
 	}
-	.attendee-table-row__companions::before {
-		content: "Begleiter:";
+	.attendee-table-row__comment::before {
+		content: "Anmerkung:";
 	}
 	.attendee-table-row__option::before {
 		content: "Abstimmung:";

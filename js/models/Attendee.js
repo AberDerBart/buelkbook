@@ -8,6 +8,7 @@ var bb = bb || {};
 			id: null,
 			name: "",
 			stuff: "",
+			comment: "",
 		},
 
 		relations: [{

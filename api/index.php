@@ -11,7 +11,7 @@ function validate_attendee($attendee) {
 		return false;
 	}
 
-	if (count($attendee) != 5) {
+	if (count($attendee) != 6) {
 		return false;
 	}
 
@@ -24,6 +24,10 @@ function validate_attendee($attendee) {
 	} 
 
 	if (!is_string($attendee["stuff"])) {
+		return false;
+	}
+
+	if (!is_string($attendee["comment"])) {
 		return false;
 	}
 

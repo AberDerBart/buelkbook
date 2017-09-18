@@ -49,6 +49,7 @@ var bb = bb || {};
 				this.model.set({
 					name: this.$('.js--attendee-edit__name input').val(),
 					stuff: this.$('.js--attendee-edit__stuff textarea').val(),
+					comment: this.$('.js--attendee-edit__comment textarea').val(),
 					option: this.optionCollectionView.getSelected(),
 				});
 
