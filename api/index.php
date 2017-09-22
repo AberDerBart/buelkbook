@@ -122,5 +122,9 @@ $router->get("option", function ($req) {
 	return array(200, JSON_decode(file_get_contents("../data/options.json"), true));
 });
 
+$router->get("meal", function ($req) {
+	return array(200, JSON_decode(file_get_contents("../data/meals.json"), true));
+});
+
 $router->respond();
 ?>
