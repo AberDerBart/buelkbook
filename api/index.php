@@ -7,11 +7,15 @@ function validate_attendee($attendee) {
 		return $opt["id"];
 	}, JSON_decode(file_get_contents("../data/options.json"), true));
 
+	$mealIds = array_map(function ($meal) {
+		return $meal["id"];
+	}, JSON_decode(file_get_contents("../data/meals.json"), true));
+
 	if (!is_array($attendee)) {
 		return false;
 	}
 
-	if (count($attendee) != 6) {
+	if (count($attendee) != 4) {
 		return false;
 	}
 
@@ -19,9 +23,9 @@ function validate_attendee($attendee) {
 		return false;
 	}
 
-	if (!is_string($attendee["name"]) || strlen($attendee["name"]) < 1) {
+	if (!is_array($attendee["companions"]) || count($attendee["companions"]) < 1) {
 		return false;
-	} 
+	}
 
 	if (!is_string($attendee["stuff"])) {
 		return false;
@@ -31,26 +35,28 @@ function validate_attendee($attendee) {
 		return false;
 	}
 
-	if (!is_array($attendee["companions"])) {
-		return false;
-	}
-
-	if (!is_string($attendee["option"]) || !in_array($attendee["option"], $optionIds)) {
-		return false;
-	}
-
 	foreach ($attendee["companions"] as $companion) {
 		if (!is_array($companion)) {
 			return false;
 		}
 
-		if (count($companion) != 1) {
+		if (count($companion) != 3) {
 			return false;
 		}
 
 		if (!is_string($companion["name"]) || strlen($companion["name"]) < 1) {
 			return false;
 		}
+
+		if (!is_string($companion["option"]) || !in_array($companion["option"], $optionIds)) {
+			return false;
+		}
+
+		if (!is_array($companion["meals"]) || 
+			count(array_diff($companion["meals"], $mealIds)) != 0)  {
+			return false;
+		}
+
 	}
 
 	return true;

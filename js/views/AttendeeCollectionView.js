@@ -7,9 +7,16 @@ var bb = bb || {};
 		tagName: 'section',
 		structure: $('#template-AttendeeCollectionView').html(),
 
-		initialize: function () {
+		initialize: function (options) {
 			this._super.apply(this, arguments);
-			this.totalView = new bb.AttendeeCollectionTotalView({collection: this.collection});
+			this.totalView = new bb.AttendeeCollectionTotalView({
+				collection: this.collection,
+			});
+			this.resultsView = new bb.AttendeeCollectionResultsView({
+				collection: this.collection,
+				options: options.options,
+				meals: options.meals,
+			});
 		},
 
 		render: function () {
@@ -18,6 +25,7 @@ var bb = bb || {};
 			this.$collectionEl = this.$('.js--attendee-collection__table');
 			
 			this.$('.js--attendee-collection__total').html(this.totalView.render().el);
+			this.$('.js--attendee-collection__results').html(this.resultsView.render().el);
 
 			return this._super.apply(this, arguments);
 		},
@@ -28,6 +36,7 @@ var bb = bb || {};
 
 		remove: function () {
 			this.totalView.remove();
+			this.resultsView.remove();
 			this._super.apply(this, arguments);
 		},
 	});

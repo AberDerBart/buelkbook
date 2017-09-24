@@ -13,7 +13,8 @@ var app = app || {};
 		initialize: function () {
 			this.attendees = new bb.AttendeeCollection();
 			this.options = new bb.OptionCollection();
-			this.attendeesFetched = false;
+			this.meals = new bb.MealCollection();
+			this.dataFetched = false;
 
 			this._views = {};
 
@@ -25,6 +26,8 @@ var app = app || {};
 			// intialize main view
 			this.setView('main', new bb.AttendeeCollectionView({
 				collection: this.attendees,
+				meals: this.meals,
+				options: this.options,
 			}));
 		},
 		render: function () {
@@ -57,12 +60,13 @@ var app = app || {};
 			}
 		},	
 
-		fetchAttendeesIfNeeded: function () {
-			if (!this.attendeesFetched) {
+		fetchDataIfNeeded: function () {
+			if (!this.dataFetched) {
 				return Promise.resolve(this.options.fetch())
+					.then(_.bind(this.meals.fetch, this.meals))
 					.then(_.bind(this.attendees.fetch, this.attendees))
 					.then(_.bind(function () {
-						this.attendeesFetched = true;
+						this.dataFetched = true;
 					}, this))
 				;
 			} else {
@@ -71,41 +75,46 @@ var app = app || {};
 		},
 
 		showAttendeeCreate: function () {
-			this.fetchAttendeesIfNeeded()
+			this.fetchDataIfNeeded()
 				.then(_.bind(function () {
 
 					var attendee = new bb.Attendee();
-					attendee.set('option', this.options.at(0));
 					this.attendees.add(attendee);
 
 					this.setView('overlay', new bb.AttendeeEditView({
 						model: attendee,
 						options: this.options,
+						meals: this.meals,
 					}));
 
 					this.setOverlayShown(true);
-				}, this), function () {
-					console.log(arguments);
+				}, this))
+				.catch(function (error) {
+					console.log(error);
 				})
 			;
 		},
 		showAttendeeEdit: function (id) {
-			this.fetchAttendeesIfNeeded()
+			this.fetchDataIfNeeded()
 				.then(_.bind(function () {
 					var attendee = this.attendees.add({id: id});
 
 					this.setView('overlay', new bb.AttendeeEditView({
 						model: attendee,
 						options: this.options,
+						meals: this.meals,
 					}));
 
 					this.setOverlayShown(true);
 				}, this))
+				.catch(function (error) {
+					console.log(error);
+				})
 			;
 		},
 		showHome: function () {
-			this.attendeesFetched = false;
-			this.fetchAttendeesIfNeeded();
+			this.dataFetched = false;
+			this.fetchDataIfNeeded();
 
 			this.setOverlayShown(false);
 			this.removeView('overlay');

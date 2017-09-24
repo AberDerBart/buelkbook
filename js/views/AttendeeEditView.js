@@ -11,27 +11,27 @@ var bb = bb || {};
 		events: {
 			'submit' : 'save',
 			'click .js--attendee-edit__cancel': 'cancel',
-			'keyup .js--attendee-edit__name input': 'validateName',
 		},
 		
 		initialize: function (options) {
-			this.options = options.options;
-			
 			this.listenTo(this.model, 'change', this.render);
 
-			this.optionCollectionView = new bb.OptionCollectionView({
-				collection: this.options
+			this.companionCollectionEditView = new bb.CompanionCollectionEditView({
+				collection: this.deepClone(this.model.get('companions')),
+				options: options.options,
+				meals: options.meals,
 			});
+
+			this.listenTo(this.companionCollectionEditView.collection, 'change add remove reset sort', this.validateCompanions);
 		},
 
 		render: function () {
 			var json = this.model.toJSON();
-			json.companions = this.collectionToText(this.model.get('companions'));
+			json.isNew = !!this.model.isNew();
 			this.$el.html(this.template(json));
 
-			this.optionCollectionView.setElement(this.$('.js--attendee-edit__option__select'));
-			this.optionCollectionView.render();
-			this.optionCollectionView.setSelected(this.model.get('option'));
+			this.companionCollectionEditView.setElement(this.$('.js--attendee-edit__companions__collection'));
+			this.companionCollectionEditView.render();
 
 			return this;
 		},
@@ -39,18 +39,15 @@ var bb = bb || {};
 		save: function(e) {
 			e.preventDefault();
 
-			var valid = this.validateName();
+			var valid = this.validateCompanions();
 
 			if (valid) {
-				var companions = this.modelsFromText(this.$('.js--attendee-edit__companions textarea').val(), bb.Companion);
-
+				var companions = this.companionCollectionEditView.getCompanions();
 				this.model.get('companions').reset(companions);
 
 				this.model.set({
-					name: this.$('.js--attendee-edit__name input').val(),
 					stuff: this.$('.js--attendee-edit__stuff textarea').val(),
-					comment: this.$('.js--attendee-edit__comment textarea').val(),
-					option: this.optionCollectionView.getSelected(),
+					comment: this.$('.js--attendee-edit__comment textarea').val()
 				});
 
 				// TODO wait indicator
@@ -75,14 +72,14 @@ var bb = bb || {};
 			Backbone.history.navigate('/', true);
 		},
 
-		validateName: function () {
-			var name = this.$('.js--attendee-edit__name input').val();
+		validateCompanions: function () {
+			var companions = this.companionCollectionEditView.getCompanions();
 			
-			if (name.length < 1) {
-				this.addError(this.$('.js--attendee-edit__name'), 'Bitte Name angeben!');
+			if (companions.length < 1) {
+				this.addError(this.$('.js--attendee-edit__companions'), 'Bitte mindestens eine Person angeben!');
 				return false;
 			} else {
-				this.removeError(this.$('.js--attendee-edit__name'));
+				this.removeError(this.$('.js--attendee-edit__companions'));
 				return true;
 			}
 		},
@@ -102,27 +99,12 @@ var bb = bb || {};
 					.text('')
 			;
 		},
-
-		collectionToText: function (collection) {
-			return collection
-				.map(function (model) {
-					return model.get('name');
-				})
-				.join("\n")
-			;
-		},
-
-		modelsFromText: function (text, ModelType) {
-			return text
-				.trim()
-				.split("\n")
-				.filter(function (name) {
-					return !!name.length;
-				})
-				.map(function (name) {
-					return new ModelType({name: name});
-				})
-			;
+		
+		deepClone: function (collection) {
+			var clonedContents = collection.map(function (model) {
+				return new model.constructor(model.toJSON());
+			});
+			return new collection.constructor(clonedContents, collection.options);
 		},
 	});
 }(bb));

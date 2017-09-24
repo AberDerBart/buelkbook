@@ -47,55 +47,79 @@
 	<header class="attendee-collection__header">
 		<h1 class="attendee-collection__header__headline">Bülkbook</h1>
 		<p>Willkommen auf der Seite vom Familientreffen in Bülkau 2017. Das Treffen findet vom 8. bis 10. September 2017 statt. Bitte tragt in der Tabelle ein, ob ihr kommt und wen und was ihr mitbringt.</p>
-		<p>Wenn Interesse besteht, können wir, wie letztes Jahr, wieder einen Motto-Abend machen. Angesichts der Kurzfristigkeit können keine neuen Vorschläge mehr eingereicht werden, daher gibt es nur die Vorschläge aus dem letzten Jahr, die nicht gewählt wurden. Es gilt wieder, dass jede Person eine Stimme hat (wenn ihr euch mit den euren nicht einig seid, müsst ihr euch getrennt eintragen, die Verteilung der Stimmen auf mehrere Vorschläge ist leider immer noch nicht möglich).</p>
+		<p>Wenn Interesse besteht, können wir, wie letztes Jahr, wieder einen Motto-Abend machen. Angesichts der Kurzfristigkeit können keine neuen Vorschläge mehr eingereicht werden, daher gibt es nur die Vorschläge aus dem letzten Jahr, die nicht gewählt wurden. Es gilt wieder, dass jede Person eine Stimme hat.</p>
 		<p>Fragen, Kommentare und Anmerkungen könnt ihr an <a href="mailto:j.grosse-holz@gmx.de">j.grosse-holz@gmx.de</a> schicken.</p>
 		<div class="js--attendee-collection__total"></div>
 		<p><a href="/attendee/new" class="button" tabindex="0">Neuen Teilnehmer anmelden</a></p>
 	</header>
-	<table class="attendees">
-		<thead>
-			<tr>
-				<th>Leute</th>
-				<th>Zeug</th>
-				<th>Anmerkung</th>
-				<th>Abstimmung</th>
-				<th>Bearbeiten</th>
-			</tr>
-		</thead>
-		<tbody class="js--attendee-collection__table"></tbody>
-	</table>
+	<div class="attendee-collection__body">
+		<section>
+			<h2>Teilnehmer</h2>
+			<table class="attendee-collection__attendees">
+				<thead>
+					<tr>
+						<th>Leute</th>
+						<th>Zeug</th>
+						<th>Anmerkung</th>
+						<th>Bearbeiten</th>
+					</tr>
+				</thead>
+				<tbody class="js--attendee-collection__table"></tbody>
+			</table>
+		</section>
+		<div class="js--attendee-collection__results attendee-collection__results"></div>
+	</div>
 </script>
 
-<script type="text/template" id="template-AttendeeCollectionTotalView">
-	<p>Bis jetzt <%= total !== 1 ? "sind" : "ist" %>  <%- total %> Person<%= total !== 1 ? "en" : "" %> angemeldet!</p>
-	<p>Abstimmungsergebnisse:</p>
-	<table class="attendee-collection-total__votes">
-		<thead>
-		<tr>
-			<th>Option</th>
-			<th>Stimmen</th>
-		</tt>
-		</thead>
-		<tbody>
-			<% for (var i = 0; i < votes.length; i++) { %>
-				<% var vote = votes[i] %>
-				<tr>
-					<td class="attendee-collection-total__vote-row__option"><%- vote.optionId %></td>
-					<td class="attendee-collection-total__vote-row__votes"><%- vote.votes %></td>
-				</tr>
-			<% } %>
-		</tbody>
-	</table>
+<script type="text/template" id="template-AttendeeCollectionResultsView">
+	<section class="attendee-collection-results__votes">
+		<h2>Abstimmungsergebnisse:</h2>
+		<table>
+			<thead>
+			<tr>
+				<th>Option</th>
+				<th>Stimmen</th>
+			</tr>
+			</thead>
+			<tbody>
+				<% for (var i = 0; i < votes.length; i++) { %>
+					<% var vote = votes[i] %>
+					<tr>
+						<td class="attendee-collection-results__vote-row__option"><%- vote.optionId %></td>
+						<td class="attendee-collection-results__vote-row__votes"><%- vote.votes %></td>
+					</tr>
+				<% } %>
+			</tbody>
+		</table>
+	</section>
+	<section class="attendee-collection-results__meals">
+		<h2>Mahlzeiten:</h2>
+		<table>
+			<thead>
+			<tr>
+				<th>Mahlzeit</th>
+				<th>Leute</th>
+			</tr>
+			</thead>
+			<tbody>
+				<% for (var i = 0; i < meals.length; i++) { %>
+					<% var meal = meals[i] %>
+					<tr>
+						<td class="attendee-collection-results__meal-row__meal"><%- meal.mealId %></td>
+						<td class="attendee-collection-results__meal-row__count"><%- meal.count %></td>
+					</tr>
+				<% } %>
+			</tbody>
+		</table>
+	</section>
 </script>
 
 <script type="text/template" id="template-AttendeeTableRowView">
 	<td class="attendee-table-row__guys">
-		<div><strong><%- name %></strong></div>
 		<div class="js--attendee-table-row__companions"></div>
 	</td>
 	<td class="attendee-table-row__stuff"><%= stuff %></td>
 	<td class="attendee-table-row__comment"><%= comment %></td>
-	<td class="attendee-table-row__option"><%- option %></td>
 	<td class="attendee-table-row__controls js--attendee-table-row__controls"><%= controls %></td>
 </script>
 
@@ -112,39 +136,44 @@
 
 
 <script type="text/template" id="template-AttendeeEditView">
-	<% if (name) { %>
-		<h2>„<%- name %>“ bearbeiten</h2>
-	<% } else { %>
+	<% if (isNew) { %>
 		<h2>Neue Teilnehmer anmelden</h2>
+	<% } else { %>
+		<h2>Teilnehmer bearbeiten</h2>
 	<% } %>
- 	<label class="input-group js--attendee-edit__name">
-		<strong class="input-group__label">Name:</strong> 
-		<input class="input-group__input" type="text" value="<%- name %>">
+	<div class="input-group js--attendee-edit__companions">
+		<div class="js--attendee-edit__companions__collection"></div>
 		<div class="input-group__message"></div>
-	</label>
-	<label class="input-group js--attendee-edit__companions">
-		<strong class="input-group__label">Begleiter:</strong> 
-		<textarea class="input-group__input input-group__input--multiline"><%- companions %></textarea>
-		<div class="input-group__info">Bitte für jeden Begleiter eine neue Zeile</div>
-		<div class="input-group__message"></div>
-	</label>
+	</div>
 	<label class="input-group js--attendee-edit__stuff">
-		<strong class="input-group__label">Zeugs:</strong> 
+		<strong class="input-group__label">Zeugs</strong> 
 		<textarea class="input-group__input input-group__input--multiline"><%- stuff %></textarea>
-		<div class="input-group__message"></div>
 	</label>
 	<label class="input-group js--attendee-edit__comment">
-		<strong class="input-group__label">Anmerkung:</strong> 
+		<strong class="input-group__label">Anmerkung</strong> 
 		<textarea class="input-group__input input-group__input--multiline"><%- comment %></textarea>
-		<div class="input-group__message"></div>
-	</label>
-	<label class="input-group js--attendee-edit__option">
-		<strong class="input-group__label">Abstimmung:</strong> 
-		<select class="input-group__input js--attendee-edit__option__select"></select>
-		<div class="input-group__message"></div>
 	</label>
 	<button type="submit" class="button button--positive js--attendee-edit__save">Speichern</button>
 	<button type="button" class="button button--negative js--attendee-edit__cancel">Abbrechen</button> 
+</script>
+
+<script type="text/template" id="template-CompanionEditView">
+	<label class="companion-edit__input-group companion-edit__input-group--name">
+		<strong class="companion-edit__input-group__label companion-edit__input-group__label--name">Name</strong> 
+		<input type="text" value="<%- name %>" class="companion-edit__input-group__input companion-edit__input-group__input--name js--companion-edit__name">
+	</label>
+	<div class="companion-edit__meals js--companion-edit__meals">
+	
+	</div>
+	<label class="companion-edit__input-group companion-edit__input-group--option">
+		<strong class="companion-edit__input-group__label">Abstimmung</strong> 
+		<select class="js--companion-edit__option__select companion-edit__input-group__input"></select>
+	</label>
+</script>
+
+<script type="text/template" id="template-MealCheckboxView">
+	<strong class="companion-edit__input-group__label companion-edit__input-group__label--checkbox"><%- id %></strong> 
+	<input type="checkbox" <% if(checked) { print('checked') } %>>
 </script>
 
 <script src="/js/libs/promise.js"></script>
@@ -158,18 +187,25 @@
 <script src="/js/models/Attendee.js"></script>
 <script src="/js/models/Companion.js"></script>
 <script src="/js/models/Option.js"></script>
+<script src="/js/models/Meal.js"></script>
 
 <script src="/js/collections/AttendeeCollection.js"></script>
 <script src="/js/collections/OptionCollection.js"></script>
+<script src="/js/collections/MealCollection.js"></script>
 
 <script src="/js/views/ACollectionView.js"></script>
 <script src="/js/views/AppView.js"></script>
 <script src="/js/views/AttendeeCollectionView.js"></script>
+<script src="/js/views/AttendeeCollectionResultsView.js"></script>
 <script src="/js/views/AttendeeCollectionTotalView.js"></script>
 <script src="/js/views/AttendeeTableRowView.js"></script>
 <script src="/js/views/AttendeeEditView.js"></script>
 <script src="/js/views/CompanionCollectionView.js"></script>
+<script src="/js/views/CompanionCollectionEditView.js"></script>
 <script src="/js/views/CompanionView.js"></script>
+<script src="/js/views/CompanionEditView.js"></script>
+<script src="/js/views/MealCollectionCheckboxView.js"></script>
+<script src="/js/views/MealCheckboxView.js"></script>
 <script src="/js/views/OptionCollectionView.js"></script>
 <script src="/js/views/OptionView.js"></script>
 

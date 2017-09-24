@@ -7,5 +7,17 @@ var bb = bb || {};
 		defaults: {
 			name: "",
 		},
+
+		relations: [{
+			type: Backbone.HasOne,
+			key: 'option',
+			relatedModel: 'bb.Option',
+			includeInJSON: Backbone.Model.prototype.idAttribute,
+		}, {
+			type: Backbone.HasMany,
+			key: 'meals',
+			relatedModel: 'bb.Meal',
+			includeInJSON: Backbone.Model.prototype.idAttribute,
+		}],
 	});
 }(bb));

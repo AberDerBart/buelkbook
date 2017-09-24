@@ -30,7 +30,6 @@ var bb = bb || {};
 				.join('<br>')
 			;
 			json.controls = this.templateControlsDefault(json);
-
 			this.$el.html(this.template(json));
 
 			this.$('.js--attendee-table-row__companions').html(this.companionsView.render().el);
