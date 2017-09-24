@@ -13,7 +13,7 @@ var bb = bb || {};
 
 		render: function () {
 			var total = this.collection.reduce(function (memo, attendee) {
-				return 1 + memo + attendee.get('companions').length;
+				return memo + attendee.get('companions').length;
 			}, 0);
 
 			this.$el.html(this.template({
