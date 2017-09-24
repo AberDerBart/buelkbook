@@ -15,10 +15,13 @@ var bb = bb || {};
 			'click .js--attendee-table-row__delete-abort': 'abortDelete',
 		},
 
-		initialize: function () {
+		initialize: function (options) {
 			this.listenTo(this.model, 'change', this.render);
 
-			this.companionsView = new bb.CompanionCollectionView({collection: this.model.get('companions')});
+			this.companionsView = new bb.CompanionCollectionView({
+				collection: this.model.get('companions'),
+				meals: options.meals,
+			});
 		},
 
 		render: function () {

@@ -8,6 +8,8 @@ var bb = bb || {};
 		structure: $('#template-AttendeeCollectionView').html(),
 
 		initialize: function (options) {
+			this.meals = options.meals;
+
 			this._super.apply(this, arguments);
 			this.totalView = new bb.AttendeeCollectionTotalView({
 				collection: this.collection,
@@ -31,7 +33,10 @@ var bb = bb || {};
 		},
 
 		createView: function (model) {
-			return new bb.AttendeeTableRowView({model: model});
+			return new bb.AttendeeTableRowView({
+				model: model,
+				meals: this.meals,
+			});
 		},
 
 		remove: function () {

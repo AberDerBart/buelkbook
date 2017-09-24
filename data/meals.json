@@ -1,8 +1,8 @@
 [
-	{"id": "Freitag, Nachmittag"},
-	{"id": "Freitag, Abend"},
-	{"id": "Samstag, Morgen"},
-	{"id": "Samstag, Nachmittag"},
-	{"id": "Samstag, Abend"},
-	{"id": "Sonntag, Morgen"}
+	{"id": "Freitag, Nachmittag", "short": "Fr, Nm"},
+	{"id": "Freitag, Abend",      "short": "Fr, Abd"},
+	{"id": "Samstag, Morgen",     "short": "Sa, Mo"},
+	{"id": "Samstag, Nachmittag", "short": "Sa, Nm"},
+	{"id": "Samstag, Abend",      "short": "Sa, Abd"},
+	{"id": "Sonntag, Morgen",     "short": "So, Mo"}
 ]
