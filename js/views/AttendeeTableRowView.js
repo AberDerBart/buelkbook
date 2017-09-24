@@ -27,11 +27,8 @@ var bb = bb || {};
 		render: function () {
 			var json = this.model.toJSON();
 
-			json.stuff = json.stuff
-				.split("\n")
-				.map(_.escape)
-				.join('<br>')
-			;
+			json.stuff = this.addBrForNewlines(json.stuff);
+			json.comment = this.addBrForNewlines(json.comment);
 			json.controls = this.templateControlsDefault(json);
 			this.$el.html(this.template(json));
 
@@ -64,6 +61,13 @@ var bb = bb || {};
 
 		abortDelete: function () {
 			this.$('.js--attendee-table-row__controls').html(this.templateControlsDefault(this.model.toJSON()));
+		},
+
+		addBrForNewlines: function (str) {
+			return str.split("\n")
+				.map(_.escape)
+				.join('<br>')
+			;
 		},
 	});
 }(bb));
