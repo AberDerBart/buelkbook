@@ -1,0 +1,8 @@
+[
+	{"id": "Freitag, Nachmittag", "short": "Fr.Nm."},
+	{"id": "Freitag, Abend",      "short": "Fr.Abd."},
+	{"id": "Samstag, Morgen",     "short": "Sa.Mor."},
+	{"id": "Samstag, Nachmittag", "short": "Sa.Nm."},
+	{"id": "Samstag, Abend",      "short": "Sa.Abd."},
+	{"id": "Sonntag, Morgen",     "short": "So.Mor."}
+]
