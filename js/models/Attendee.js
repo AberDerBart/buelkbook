@@ -18,5 +18,13 @@ var bb = bb || {};
 		}],
 
 		urlRoot: '/api/attendee',
+
+		getAttendingCompanions: function() {
+			return this.get('companions').filter(c => !c.get('canceled'))
+		},
+
+		getCanceledCompanions: function() {
+			return this.get('companions').filter(c => c.get('canceled'))
+		}
 	});
 }(bb));

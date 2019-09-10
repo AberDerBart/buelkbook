@@ -69,7 +69,7 @@ var bb = bb || {};
 		getAllCompanions: function () {
 			return _.chain(this.collection.models)
 				.map(function (attendee) {
-					return attendee.get('companions').models
+					return attendee.getAttendingCompanions()
 				})
 				.flatten()
 				.value();
