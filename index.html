@@ -163,6 +163,10 @@
 		<strong class="companion-edit__input-group__label companion-edit__input-group__label--name">Name</strong> 
 		<input type="text" value="<%- name %>" class="companion-edit__input-group__input companion-edit__input-group__input--name js--companion-edit__name">
 	</label>
+	<label class="companion-edit__input-group companion-edit__input-group--canceled">
+		<strong class="companion-edit__input-group__label  companion-edit__input-group__label--checkbox">Absage</strong> 
+		<input type="checkbox" <% if(canceled) { print('checked') } %> class="js--companion-edit__canceled">
+	</label>
 	<div class="companion-edit__meals js--companion-edit__meals">
 	
 	</div>
