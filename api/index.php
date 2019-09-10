@@ -40,11 +40,15 @@ function validate_attendee($attendee) {
 			return false;
 		}
 
-		if (count($companion) != 3) {
+		if (count($companion) != 4) {
 			return false;
 		}
 
 		if (!is_string($companion["name"]) || strlen($companion["name"]) < 1) {
+			return false;
+		}
+
+		if (!is_bool($companion["canceled"])) {
 			return false;
 		}
 
