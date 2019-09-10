@@ -5,7 +5,7 @@ var bb = bb || {};
 
 	bb.CompanionView = Backbone.View.extend({
 		tagName: 'li',
-		template: _.template('<%- name %> <em><%- meals %></em>'),
+		template: _.template('<%- name %> <em><%- comment %></em>'),
 
 		initialize: function (options) {
 			this.meals = options.meals;
@@ -15,6 +15,18 @@ var bb = bb || {};
 		},
 
 		render: function () {
+			var json = this.model.toJSON();
+			if (json.canceled) {
+				json.comment = '(Absage)'
+			} else {
+				json.comment = this.createMealString();
+			}
+
+			this.$el.html(this.template(json));
+			return this;
+		},
+
+		createMealString: function() {
 			var mealParticipations = this.meals.map(function (meal) {
 				return {
 					short: meal.get('short'),
@@ -61,11 +73,7 @@ var bb = bb || {};
 				}).join('; ') + ')';
 			}
 
-			var json = this.model.toJSON();
-			json.meals = meals;
-
-			this.$el.html(this.template(json));
-			return this;
-		},
+			return meals;
+		}
 	});
 }(bb));

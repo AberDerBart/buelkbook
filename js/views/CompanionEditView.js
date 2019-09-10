@@ -10,7 +10,8 @@ var bb = bb || {};
 
 		events: {
 			'keyup .js--companion-edit__name': 'updateName',
-			'focusout .js--companion-edit__name': 'deleteIfEmpty'
+			'focusout .js--companion-edit__name': 'deleteIfEmpty',
+			'change .js--companion-edit__canceled': 'updateCanceled',
 		},
 
 		initialize: function (options) {
@@ -25,6 +26,10 @@ var bb = bb || {};
 				collection: this.meals,
 				companionMeals: this.model.get('meals'),
 			});
+
+			if (this.model.get('canceled')) {
+				this.$el.addClass('companion-edit--canceled');
+			}
 		},
 
 		render: function () {
@@ -48,6 +53,12 @@ var bb = bb || {};
 			if (!lastInCollection && this.model.get('name') == '') {
 				this.model.destroy();
 			}
+		},
+
+		updateCanceled: function () {
+			var canceled = this.$('.js--companion-edit__canceled').is(":checked");
+			this.model.set('canceled', canceled);
+			this.$el.toggleClass('companion-edit--canceled', canceled);
 		},
 	});
 }(bb));

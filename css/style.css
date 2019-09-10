@@ -280,6 +280,10 @@ input, textarea {
 		padding-left: .5rem;
 		order: 2;
 	}
+	.companion-edit--canceled .companion-edit__meals, 
+	.companion-edit--canceled .companion-edit__input-group--option {
+		display: none;
+	}
 }
 
 @media screen and (min-width: 40rem) {
@@ -329,6 +333,11 @@ input, textarea {
 	.companion-edit:first-child .companion-edit__input-group__label--checkbox {
 		transform-origin: center left;
 		transform: rotate(-45deg) translate(1.3rem, -0.9rem);
+	}
+	.companion-edit--canceled .companion-edit__meals input, 
+	.companion-edit--canceled .companion-edit__input-group--option select {
+		visibility: hidden;
+		pointer-events: none;
 	}
 }
 

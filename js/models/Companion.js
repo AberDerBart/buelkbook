@@ -6,6 +6,7 @@ var bb = bb || {};
 	bb.Companion = Backbone.RelationalModel.extend({
 		defaults: {
 			name: "",
+			canceled: false,
 		},
 
 		relations: [{
